@@ -52,7 +52,7 @@ def part2(input_list):
     max_x, max_y = max(d[0] for d in dots), max(d[1] for d in dots)
     for y in range(max_y + 1):
         for x in range(max_x + 1):
-            print("#" if (x, y) in dots else ".", end="")
+            print("#" if (x, y) in dots else " ", end="")
         print()
     
     answer = None
