@@ -1,5 +1,5 @@
 INPUT_FILE = r"C:\Appl\Repos\Jonas\Advent_of_Code\2022\python\09\input.txt"
-TEST_INPUT = """R 4
+TEST_INPUT_1 = """R 4
 U 4
 L 3
 D 1
@@ -8,11 +8,22 @@ D 1
 L 5
 R 2
 """.split('\n')
+TEST_INPUT_2 = """R 5
+U 8
+L 8
+D 3
+R 17
+D 10
+L 25
+U 20
+""".split('\n')
 
 
 def get_input(test=False):
-    if test:
-        return TEST_INPUT
+    if test == 1:
+        return TEST_INPUT_1
+    if test == 2:
+        return TEST_INPUT_2
 
     input_list = []
 
@@ -88,7 +99,7 @@ def part2(input_list: list[tuple[str, int]]):
 
 
 def main():
-    input_list = get_input(test=1)
+    input_list = get_input(test=0)
     input_list = sanitize_input(input_list)
     ans1 = part1(input_list)
     ans2 = part2(input_list)
