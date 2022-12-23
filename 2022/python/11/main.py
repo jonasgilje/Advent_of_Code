@@ -46,11 +46,11 @@ class Monkey:
     _div_test: int
     _throw_to: tuple[int, int]
 
-    def operation(self, new_val):
+    def operation(self, old_val: int) -> int:
         op, argument = self._operation
         return {
             "+": operator.__add__, "*": operator.__mul__
-        }[op](new_val, new_val if argument == "old" else int(argument))
+        }[op](old_val, old_val if argument == "old" else int(argument))
 
     def div_test(self, test_val) -> bool:
         return test_val % self._div_test == 0
@@ -119,8 +119,7 @@ def part2(input_list: list[Monkey]):
             is_ = monkey.items
             for i in range(len(is_)):
                 monkey_tallies[monkey.num] += 1
-                is_[i] = monkey.operation(is_[i])
-                is_[i] %= lcm
+                is_[i] = monkey.operation(is_[i]) % lcm
                 input_list[monkey.throw_to(is_[i])].items.append(is_[i])
                 is_[i] = None
             monkey.items = [i for i in is_ if i is not None]
