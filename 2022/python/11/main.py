@@ -94,7 +94,7 @@ def sanitize_input(input_list):
 
 def part1(input_list: list[Monkey]):
     monkey_tallies = [0] * len(input_list)
-    for round in range(20):
+    for _ in range(20):
         for monkey in input_list:
             is_ = monkey.items
             for i in range(len(is_)):
@@ -103,7 +103,6 @@ def part1(input_list: list[Monkey]):
                 input_list[monkey.throw_to(is_[i])].items.append(is_[i])
                 is_[i] = None
             monkey.items = [i for i in is_ if i is not None]
-    print(input_list)
     *_, _1, _2 = sorted(monkey_tallies)
     answer = _1 * _2
     return answer
@@ -115,20 +114,17 @@ def part2(input_list: list[Monkey]):
     lcm = functools.reduce(operator.__mul__, list_div_tests) \
         / gcd(*list_div_tests)
 
-    for round in range(10_000):
+    for _ in range(10_000):
         for monkey in input_list:
             is_ = monkey.items
             for i in range(len(is_)):
                 monkey_tallies[monkey.num] += 1
-                is_[i] = monkey.operation(is_[i])  # // 3
+                is_[i] = monkey.operation(is_[i])
                 is_[i] %= lcm
                 input_list[monkey.throw_to(is_[i])].items.append(is_[i])
                 is_[i] = None
             monkey.items = [i for i in is_ if i is not None]
-        print(round)
-    print(input_list)
     *_, _1, _2 = sorted(monkey_tallies)
-    print(monkey_tallies)
     answer = _1 * _2
     return answer
 
