@@ -96,8 +96,8 @@ def part2(input_list: list[tuple[int, int, int, int]]):
             result_set.add((px, py))
         return result_set
 
-    points_dict: collections.defaultdict[tuple[int,
-                                               int], int] = collections.defaultdict(int)
+    points_dict: collections.defaultdict[tuple[int, int], int] \
+        = collections.defaultdict(int)
     for ps in interesting_list:
         for candidate_point in bez_between(*ps):
             points_dict[candidate_point] += 1
@@ -109,9 +109,9 @@ def part2(input_list: list[tuple[int, int, int, int]]):
 
 def main():
     input_list = get_input(test=0)
-    grid = sanitize_input(input_list)
-    ans1 = part1(grid)
-    ans2 = part2(grid)
+    input_list = sanitize_input(input_list)
+    ans1 = part1(input_list)
+    ans2 = part2(input_list)
 
     print(f"{ans1=}, {ans2=}")
 
